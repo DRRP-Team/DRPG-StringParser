@@ -30,7 +30,7 @@ function main() {
 
     const sorted_languages = LOCALS.map(x => x.lang);
 
-    let language_csv = 'default' + generateCsvRow('Identifier', 'Remarks', 'Filter', ...sorted_languages);
+    let language_csv = 'default,' + generateCsvRow('Identifier', 'Remarks', 'Filter', ...sorted_languages);
     // В GZDoom 4.x захардкожено чтение поля default без кавычек :)
 
     for (const id in output) {
@@ -78,7 +78,7 @@ function parseLanguageFile(file) {
 }
 
 function generateCsvRow(...row) {
-    return row.map(x => JSON.stringify(x)).join(',') + '\n';
+    return row.map(x => `"${x}"`).join(',') + '\n';
 }
 
 main();
